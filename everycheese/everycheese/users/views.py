@@ -12,6 +12,7 @@ User = get_user_model()
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
+    print("Now looking at the User detail view")
     # These Next Two Lines Tell the View to Index
     #   Lookups by Username
     slug_field = "username"
@@ -41,6 +42,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         # Only Get the User Record for the
         #   User Making the Request
+        print("Now getting the user data")
         return User.objects.get(
             username=self.request.user.username
         )
@@ -53,6 +55,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
+        print("Now redirecting")
         return reverse(
             "users:detail",
             kwargs={"username": self.request.user.username},
