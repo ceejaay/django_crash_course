@@ -11,9 +11,9 @@ class Cheese(TimeStampedModel):
     description = models.TextField("Description", blank=True)
 
 
-class Firmness(models.TextChoices):
-    UNSPECIFIED = "unspecified", "Unspecified"
-    SOFT = "Soft", "soft"
-    SEMI_HARD = "semi-hard", "Semi-Hard"
-    SEMI_SOFT = "semi-soft", "Semi-Soft"
-    HARD = "hard", "Hard"
+    class Firmness(models.TextChoices):
+        UNSPECIFIED = "unspecified", "Unspecified"
+        SOFT = "Soft", "soft"
+        SEMI_HARD = "semi-hard", "Semi-Hard"
+        SEMI_SOFT = "semi-soft", "Semi-Soft"
+        HARD = "hard", "Hard"
