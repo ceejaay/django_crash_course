@@ -17,3 +17,8 @@ class Cheese(TimeStampedModel):
         SEMI_HARD = "semi-hard", "Semi-Hard"
         SEMI_SOFT = "semi-soft", "Semi-Soft"
         HARD = "hard", "Hard"
+
+    firmness = models.CharField("Firmness", max_length=20, choices=Firmness.choices, default=Firmness.UNSPECIFIED)
+
+    def __str__(self):
+        return self.name
