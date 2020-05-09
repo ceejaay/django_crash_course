@@ -8,5 +8,14 @@ urlpatterns = [
             route='',
             view=views.CheeseListView.as_view(),
             name='list',
-            )
+            ),
+        path(
+            route='<slug:slug>',
+            view=views.CheeseDetailView.as_view(),
+            name='detail',
+            ),
         ]
+
+# when we add a path. We have to direct something to it in the view
+
+
