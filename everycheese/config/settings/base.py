@@ -5,7 +5,6 @@ Base settings to build other settings files upon.
 import os  # noqa: F401
 
 import environ
-
 BASE_DIR = (
     environ.Path(__file__) - 3
 )  # (everycheese/config/settings/base.py - 3 = everycheese/)
@@ -80,6 +79,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "django_countries",
 ]
 
 LOCAL_APPS = [
