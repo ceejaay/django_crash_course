@@ -9,9 +9,15 @@
 <!-- use the url template tag to generate the absolute URL to the detail page. -->
 <ul>
     {% for cheese in cheese_list %}
-    
+
     <li><a href="{% url 'cheeses:detail' cheese.slug %}">{{cheese.name}}</a></li>
     {% endfor %}
 </ul>
 
+<hr/>
+<p>Don't see a cheese listed?</p>
+<a class="btn btn-primary" href="{% url 'cheeses:add' %}" role="button" Add Cheese/>
+
 {% endblock content %}
+
+
