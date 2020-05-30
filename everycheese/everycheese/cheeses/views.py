@@ -23,6 +23,10 @@ class CheeseCreateView(LoginRequiredMixin, CreateView):
             'country_of_origin',
             ]
 
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
+
 # Then go add the url pattern
 
 
