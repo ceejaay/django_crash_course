@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Cheese
 
@@ -13,7 +14,7 @@ class CheeseDetailView(DetailView):
 # for every view we need a url pattern
 
 
-class CheeseCreateView(CreateView):
+class CheeseCreateView(LoginRequiredMixin, CreateView):
     model = Cheese
     fields = [
             'name',
