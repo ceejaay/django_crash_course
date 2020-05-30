@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-
+# i think this is for everything that has localhost:8000/cheese/
 app_name = "cheeses"
 
 urlpatterns = [
