@@ -100,3 +100,22 @@ def test_detail_contains_cheese_data(rf):
     assertContains(response, cheese.country_of_origin.name)
 
 
+
+def test_cheese_create_form_valid(rf, admin_user):
+    # submit the cheese add form.
+    form_data = {
+            "name": "Paski Sir",
+            "description": "A salty, hard cheese",
+            "firmness": Cheese.Firmness.HARD,
+            }
+
+    request = rf.post(reverse("cheeses:add"), form_data)
+    request.user = admin_user
+    response = CheeseCreateView.as_view()(request)
+    # get the cheese based on the name
+    cheese = Cheese.objects.get(name="Paski Sir")
+    assert cheese.description == "A salty, hard cheese"
+    assert cheese.firmness == Cheese.Firmness.HARD
+    assert cheese.creator == admin_user
+
+
