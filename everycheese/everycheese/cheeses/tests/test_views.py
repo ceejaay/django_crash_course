@@ -30,7 +30,7 @@ def test_good_cheese_list_view_expanded(rf):
 
     # determine the url
     # url = reverse("cheeses:list")
-    # rf is pytest shortcute to django.test.RequestFactory
+    # rf is pytest shortcut to django.test.RequestFactory
     # We generate a request as if from a user accessing
     # the cheeses list view
     # request = rf.get(url)
@@ -70,4 +70,33 @@ def test_good_cheese_create_view(rf, admin_user):
     response = CheeseCreateView.as_view()(request)
     # Test that the response is valid
     assert response.status_code == 200
+
+
+def test_cheese_list_contains_2_cheeses(rf):
+    # create a couple of cheeses.
+    cheese1 = CheeseFactory()
+    cheese2 = CheeseFactory()
+    # create a request and then a response
+    # for a list of cheeses
+    request = rf.get(reverse('cheeses:list'))
+    print(request)
+    response = CheeseListView.as_view()(request)
+    # assert that the response contains both cheese names in the template.
+
+    assertContains(response, cheese1.name)
+    assertContains(response, cheese2.name)
+
+def test_detail_contains_cheese_data(rf):
+    cheese = CheeseFactory()
+    url = reverse("cheeses:detail",
+            kwargs={"slug": cheese.slug}
+            )
+    request = rf.get(url)
+    callable_obj = CheeseDetailView.as_view()
+    # print("this is the callable object.", callable_obj)
+    response = callable_obj(request, slug=cheese.slug)
+    assertContains(response, cheese.name)
+    assertContains(response, cheese.get_firmness_display())
+    assertContains(response, cheese.country_of_origin.name)
+
 

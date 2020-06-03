@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 from .models import Cheese
 
@@ -30,3 +31,5 @@ class CheeseCreateView(LoginRequiredMixin, CreateView):
 # Then go add the url pattern
 
 
+c = CheeseListView.as_view()
+print("This is the view object", c.__dict__)

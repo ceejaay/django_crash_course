@@ -12,7 +12,6 @@ User = get_user_model()
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
-    print("Now looking at the User detail view")
     # These Next Two Lines Tell the View to Index
     #   Lookups by Username
     slug_field = "username"
@@ -64,3 +63,4 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 user_redirect_view = UserRedirectView.as_view()
+
