@@ -2,7 +2,13 @@ from django.template.defaultfilters import slugify
 from everycheese.users.tests.factories import UserFactory
 import factory
 import factory.fuzzy
+import pytest
 from ..models import Cheese
+
+@pytest.fixture
+
+def cheese():
+    return CheeseFactory()
 
 class CheeseFactory(factory.django.DjangoModelFactory):
     name = factory.fuzzy.FuzzyText()

@@ -14,7 +14,7 @@ from ..views import (
         CheeseDetailView,
         )
 
-from .factories import CheeseFactory
+from .factories import CheeseFactory, cheese
 pytestmark = pytest.mark.django_db
 
 
@@ -44,9 +44,9 @@ def test_good_cheese_list_view_expanded(rf):
     # assertContains(response, "Cheese List")
 
 
-def test_good_cheese_detail_view(rf):
+def test_good_cheese_detail_view(rf, cheese):
     # Order some cheese from the CheeseFactory
-    cheese = CheeseFactory()
+    # cheese = CheeseFactory()
     # make a request for our new cheese
     url = reverse("cheeses:detail",
             kwargs={"slug": cheese.slug})
