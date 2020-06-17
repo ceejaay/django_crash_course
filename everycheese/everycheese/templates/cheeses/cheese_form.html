@@ -4,13 +4,11 @@
 
 {% block content %}
 {% with action=view.action|default:"Add" %}
-    <h1> {{ action }} = what is this? Cheese</h1>
-    {{view}}
-    <p> This should be the action =>{{view.action}} </p>
-    <form method="post" action=".">
+    <h1> {{ action }} Cheese</h1>
+<form method="post" action=".">
         {% csrf_token %}
-        {{ form | crispy }}
+        {{ form|crispy }}
     <button type="submit" class="btn btn-primary">{{ action }}</button>
-{% endwith%}
+{% endwith %}
 </form>
 {% endblock %}

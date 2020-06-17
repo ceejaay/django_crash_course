@@ -135,7 +135,7 @@ def test_good_cheese_update_view(rf, admin_user, cheese):
     # add an authnticated user
     request.user = admin_user
     # use the request to get the response
-    callable_obj = CheesUpdateView.as_view()
+    callable_obj = CheeseUpdateView.as_view()
     response = callable_obj(request, slug=cheese.slug)
     # test that the response is valid
     assertContains(response, "Update Cheese")
@@ -153,7 +153,7 @@ def test_cheese_update(rf, admin_user, cheese):
     request = rf.post(url, form_data)
     request.user = admin_user
     callable_obj = CheeseUpdateView.as_view()
-    response = callable_obj(request, slug='cheese.slug')
+    response = callable_obj(request, slug=cheese.slug)
     cheese.refresh_from_db()
     assert cheese.description == "something new"
 
