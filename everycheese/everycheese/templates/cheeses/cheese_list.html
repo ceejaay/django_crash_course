@@ -7,12 +7,20 @@
 
 
 <!-- use the url template tag to generate the absolute URL to the detail page. -->
-<ul>
-    {% for cheese in cheese_list %}
 
-    <li><a href="{% url 'cheeses:detail' cheese.slug %}">{{cheese.name}}</a></li>
-    {% endfor %}
-</ul>
+
+
+<!-- we iterate through cheese_list which is provided to us by CheeseListView -->
+{% if cheese_list %}
+    <ul>
+        {% for c in cheese_list %}
+
+        <li><a href="{% url 'cheeses:detail' c.slug %}">{{c.name}}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+  <p>No list. create a cheese</p>
+{% endif %}
 
 <hr/>
 <p>Don't see a cheese listed?</p>
@@ -21,5 +29,3 @@
   Add Cheese
   </a>
 {% endblock content %}
-
-
