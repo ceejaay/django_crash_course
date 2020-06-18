@@ -11,17 +11,13 @@
 
 
 <!-- we iterate through cheese_list which is provided to us by CheeseListView -->
-{% if cheese_list %}
     <ul>
-        {% for c in cheese_list %}
-
-        <li><a href="{% url 'cheeses:detail' c.slug %}">{{c.name}}</a></li>
+        {% for cheese in cheese_list %}
+            <li><a href="{% url 'cheeses:detail' cheese.slug %}">{{cheese.name}}</a></li>
+        {% empty %}
+            <p>No list. create a cheese</p>
         {% endfor %}
     </ul>
-{% else %}
-  <p>No list. create a cheese</p>
-{% endif %}
-
 <hr/>
 <p>Don't see a cheese listed?</p>
   <a class="btn btn-primary"
